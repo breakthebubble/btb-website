@@ -121,6 +121,27 @@
 				border-top: 0;
 			}
 		}
+
+		&.circle {
+			box-shadow: none;
+			border-radius: 0;
+			margin: 0 0 (_size(element-margin) * 1.5) 0;
+			width: 13em;
+
+			img {
+				display: block;
+				position: relative;
+				border-radius: 100%;
+				width: 100%;
+			}
+
+			.inner {
+				display: block;
+				border: solid (_size(border-width) * 2) _palette(accent1, border);
+
+				position: relative;
+			}
+		}
 	}
 
 	@mixin color-image($p: null) {

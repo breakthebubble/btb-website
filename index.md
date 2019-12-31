@@ -1,9 +1,8 @@
 ---
-title: Home
+title: 
 sections:
   - title: |-
-      Sed ipsum magna lorem tempus amet
-      vehicula et gravida elementum
+      This is the top text
     section_id: one
     background_style: style2
     icons:

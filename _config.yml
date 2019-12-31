@@ -1,10 +1,10 @@
-title: Fractal
+title: Break the Bubble!
 baseurl: /
 permalink: '/:title/'
 collections:
   posts:
     permalink: '/posts/:title/'
-palette: blue
+palette: dark_blue
 palettes:
   blue:
     sass:
@@ -15,6 +15,12 @@ palettes:
   purple:
     sass:
       color: '#786dc2'
+  pink:
+    sass:
+      color: '#f072a9'
+  dark_blue:
+    sass:
+      color: '#26354c'
 sass:
   indentWidth: 4
   style: nested
