@@ -1,9 +1,8 @@
 title_url: '#'
 subtitle: |-
-  Nibh sed aliquam, cursus arcu aliquet  
-  natoque rhoncus ut non in Aliquet
+  Make New Friends in Minneapolis/St. Paul
 actions:
-  - label: Download
+  - label: Signup
     icon: fa-download
     url: /elements
     is_primary: true
@@ -15,4 +14,5 @@ actions:
     is_scrolly: true
 img:
   path: images/screen.jpg
-  phone_border: true
+  phone_border: false
+  circle_border: true

@@ -14,6 +14,9 @@
     </div>
     {% assign img_is_not_empty = site.data.header.img | is_not_empty %}
     {% if img_is_not_empty %}
+    <!-- TODO: make this work for both phone and circle
         <div class="image{% assign phone_border_is_not_empty = site.data.header.img.phone_border | is_not_empty %}{% if phone_border_is_not_empty %} phone{% endif %}"><div class="inner"><img src="{{ site.data.header.img.path | relative_url }}" alt="" /></div></div>
+    -->
+    <div class="image{% assign circle_border_is_not_empty = site.data.header.img.circle_border | is_not_empty %}{% if circle_border_is_not_empty %} circle{% endif %}"><div class="inner"><img src="{{ site.data.header.img.path | relative_url }}" alt="" /></div></div>
     {% endif %}
 </header>

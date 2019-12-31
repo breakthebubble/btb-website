@@ -26,6 +26,14 @@ metadata:
       images:
         small: images/demo-purple-256x192.png
         large: images/demo-purple-1024x768.png
+    pink:
+      images:
+        small: images/demo-magenta-256x192.png
+        large: images/demo-magenta-1024x768.png
+    dark_blue:
+      images:
+        small: images/demo-blue-256x192.png
+        large: images/demo-blue-1024x768.png
 stackbit_banner:
   show_banner: true
   name: Fractal
@@ -59,6 +67,8 @@ models:
           - blue
           - magenta
           - purple
+          - pink
+          - dark_blue
         required: true
         description: The color palette used in the theme
       - type: object
@@ -75,6 +85,12 @@ models:
           - type: palette
             name: purple
             label: Purple
+          - type: palette
+            name: pink
+            label: Pink
+          - type: palette
+            name: dark_blue
+            label: DarkBlue
       - type: object
         name: sass
         label: Sass
@@ -145,6 +161,11 @@ models:
             label: Header Image Phone Border
             default: false
             description: Puts a phone border around the header image
+          - type: boolean
+            name: circle_border
+            label: Header Image Circle Border
+            default: false
+            description: Puts a circle border around the header image
   footer:
     type: data
     file: footer.yml
