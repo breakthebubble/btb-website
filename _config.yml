@@ -1,4 +1,4 @@
-title: Break the Bubble!
+title: 'Break the Bubble!'
 baseurl: /
 permalink: '/:title/'
 collections:
@@ -20,7 +20,8 @@ palettes:
       color: '#f072a9'
   dark_blue:
     sass:
-      color: '#26354c'
+      # color: '#26354c'
+      color: '#263047'
 sass:
   indentWidth: 4
   style: nested

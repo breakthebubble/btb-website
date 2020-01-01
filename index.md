@@ -55,7 +55,7 @@ sections:
     section_id: three
     background_style: style2
     actions:
-      - label: Download
+      - label: Sign Up!
         url: '#'
         is_primary: true
         is_scrolly: false

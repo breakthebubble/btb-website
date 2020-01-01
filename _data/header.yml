@@ -2,7 +2,7 @@ title_url: '#'
 subtitle: |-
   Make New Friends in Minneapolis/St. Paul
 actions:
-  - label: Signup
+  - label: Sign Up!
     icon: fa-download
     url: /elements
     is_primary: true
