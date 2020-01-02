@@ -42,6 +42,6 @@ exclude:
   - netlify.toml
   - stackbit-build.sh
   - stackbit-pull.js
-  - test
+  - test/
   - eventbrite.sh
   - test_eventbrite.sh
