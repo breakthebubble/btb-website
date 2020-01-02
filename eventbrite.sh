@@ -1,12 +1,5 @@
 #! /usr/bin/env bash
 
-get_user_info() {
-    #echo $( \
-        curl --silent "$@" \
-        --header "Authorization: Bearer $EVENTBRITE_PRIVATE_TOKEN" \
-        'https://www.eventbriteapi.com/v3/users/me/'
-    #)
-}
 
 check_oauth_token() {
     if [ -z "$EVENTBRITE_PRIVATE_TOKEN" ]; then
@@ -17,6 +10,26 @@ check_oauth_token() {
         echo "2) Run 'export EVENTBRITE_PRIVATE_TOKEN=>>put the key here<<'"
         exit 1
     fi
+}
+
+get_user_info() {
+    curl --silent "$@" \
+    --header "Authorization: Bearer $EVENTBRITE_PRIVATE_TOKEN" \
+    'https://www.eventbriteapi.com/v3/users/me/'
+}
+
+get_user_id() {
+    echo $(get_user_info) | \
+    sed 's/, "/,\n"/g' | \
+    grep \"id\":
+ #   sed 's/id: \"//g' | \
+ #   sed 's/\".//g'
+}
+
+get_users_event_list() {
+    curl --silent "$@" \
+    --header "Authorization: Bearer $EVENTBRITE_PRIVATE_TOKEN" \
+    'https://www.eventbriteapi.com/v3/organizations/150420679378/events/'
 }
 
 

@@ -32,24 +32,39 @@ teardown() {
 
 @test 'check good HTTP response' {
     run get_user_info --include
-#    echo "$output" >> curl.log #&3
-    
+    [ "$status" -eq 0 ]
     [[ "$output" == *'HTTP/1.1 200 OK'* ]]
 }
 
-@test 'Get User ID' {
+@test 'Get User Info' {
     run get_user_info
-    echo "$output" >> curl.log #&3
     [ "$status" -eq 0 ]
-
     [[ "$output" == *'"id": "'* ]]
 }
 
+@test 'Get User ID' {
+    run get_user_id
+    [ "$status" -eq 0 ]
+    [[ "$output" == '"id": "'*'",' ]]
+}
+
+#@test 'User ID is a number'
+
 @test 'Returns only JSON' {
     run get_user_info
-    echo "$output" >> curl.log #&3
+    [ "$status" -eq 0 ]
     [[ "$output" == "{"*"}" ]]
 }
+#TODO: combine in the refactor
+
+@test 'Get Users Event List' {
+    run get_users_event_list
+    [ "$status" -eq 0 ]
+    [[ "$output" == *'"events":'* ]]
+}
+
+
+
 
 
 if [ -z "$EVENTBRITE_PRIVATE_TOKEN" ]; then
