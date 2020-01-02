@@ -4,5 +4,8 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 
+### build script output ###
+_data/eventbrite.json
+
 ### Unit test output ###
 test/test_eventlist.json

@@ -60,6 +60,8 @@ teardown() {
     [[ "$output" == *'"events":'* ]]
     # Is only JSON
     [[ "$output" == "{"*"}" ]]
+    # List matches current user
+    [[ "$output" == *$(get_user_id)* ]]
 }
 
 @test 'Clear output file' {

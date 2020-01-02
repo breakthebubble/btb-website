@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 
+EVENTBRITE_EVENT_LIST_MAX=500
 
 check_oauth_token() {
     if [ -z "$EVENTBRITE_PRIVATE_TOKEN" ]; then
@@ -24,7 +25,6 @@ get_user_id() {
         sed 's/, "/,\n"/g' | \
         grep \"id\": \
     )
-
     id_line=${id_line##* \"}
     echo ${id_line%\"*}
 }
@@ -32,7 +32,7 @@ get_user_id() {
 get_users_event_list() {
     curl --silent "$@" \
     --header "Authorization: Bearer $EVENTBRITE_PRIVATE_TOKEN" \
-    'https://www.eventbriteapi.com/v3/organizations/150420679378/events/'
+    "https://www.eventbriteapi.com/v3/organizations/$(get_user_id)/events/?page_size=$EVENTBRITE_EVENT_LIST_MAX"
 }
 
 save_events_to_json() {
