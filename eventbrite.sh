@@ -35,8 +35,14 @@ get_users_event_list() {
     "https://www.eventbriteapi.com/v3/organizations/$(get_user_id)/events/?page_size=$EVENTBRITE_EVENT_LIST_MAX"
 }
 
+filter_json_html() {
+    #echo "$@" | sed 's/, "html": "*"}/, }/g'
+    echo "$@" | sed 's/<.*>//g'
+}
+
 save_events_to_json() {
-    get_users_event_list > "$@"
+    event_data="$(get_users_event_list)"
+    filter_json_html $event_data > "$@"
 }
 
 

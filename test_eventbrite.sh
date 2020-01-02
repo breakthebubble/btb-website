@@ -64,6 +64,14 @@ teardown() {
     [[ "$output" == *$(get_user_id)* ]]
 }
 
+@test 'Jekyll/Netlify Workaround: Filter HTML data' {
+    event_data=$(get_users_event_list)
+    [[ "$event_data" == *'<P>'* ]]
+    run filter_json_html $event_data
+    printf "\n\n$output" > ./test/filter.log
+    [[ "$output" != *'<P>'* ]]
+}
+
 @test 'Clear output file' {
     rm -f ./test/test_eventbrite.json
 }
@@ -73,6 +81,7 @@ teardown() {
     # Exits with good status
     [ "$status" -eq 0 ]
     # Is only JSON
+    echo $output > test_eventlist.json
     [[ "$(cat $EVENTBRITE_TEST_OUTPUT)" == "{"*"}" ]]
 }
 
