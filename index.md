@@ -48,6 +48,12 @@ sections:
         icon: fa-desktop
     type: spotlights
     component: spotlights.html
+    
+  - title: Events Section
+    section_id: events
+    type: events
+    component: events.html
+
   - title: Magna leo sapien gravida
     subtitle: |-
       Gravida at leo elementum elit fusce accumsan dui libero, quis vehicula  

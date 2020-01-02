@@ -1,0 +1,30 @@
+<!-- Events -->
+<section id="{{ include.section.section_id }}" class="wrapper">
+    <div class="inner alt">
+        {% assign events_is_not_empty = site.data.eventbrite.events | is_not_empty %}
+        {% if events_is_not_empty %}
+            {% for event in site.data.eventbrite.events %}
+                <section class="event">
+                    {% assign logo_is_not_empty = event.logo | is_not_empty %}
+                    {% if logo_is_not_empty %}
+                        <div class="image"><img src="{{ event.logo.url  }}" alt="" /></div>  <!--TODO: there was a relative path filter here.  What should that be?-->
+                    {% endif %}
+                    <div class="content">
+                        <h3>{{ event.name.text }}</h3>
+                        {{ event.description.text | markdownify }}
+                    </div>
+                </section>
+            {% endfor %}
+        {% endif %}
+        {% assign icons_is_not_empty = include.section.icons | is_not_empty %}
+        {% if icons_is_not_empty %}
+            <section class="special">
+                <ul class="icons labeled">
+                    {% for item in include.section.icons %}
+                        <li><span class="icon {{ item.icon }}"><span class="label">{{ item.title }}</span></span></li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+    </div>
+</section>
