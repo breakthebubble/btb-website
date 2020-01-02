@@ -3,3 +3,6 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+
+### Unit test output ###
+test/test_eventlist.json

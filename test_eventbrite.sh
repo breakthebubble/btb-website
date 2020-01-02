@@ -1,5 +1,7 @@
 #!./test/bats/bin/bats
 
+EVENTBRITE_TEST_OUTPUT=./test/test_eventlist.json
+
 
 setup() {
     source ./eventbrite.sh
@@ -13,9 +15,6 @@ teardown() {
     echo "###############################"
 }
 
-@test 'Clear the log file' {
-    echo > curl.log
-}
 
 @test 'Env var for User Key' {
     echo "If this fails, get the generate an API key from the Eventbrite user settings."
@@ -38,30 +37,45 @@ teardown() {
 
 @test 'Get User Info' {
     run get_user_info
+    # Good exit status
     [ "$status" -eq 0 ]
+    # Contains ID
     [[ "$output" == *'"id": "'* ]]
+    # Is only JSON
+    [[ "$output" == "{"*"}" ]]
 }
 
 @test 'Get User ID' {
     run get_user_id
     [ "$status" -eq 0 ]
-    [[ "$output" == '"id": "'*'",' ]]
+    # confirm output only contains digits
+    [[ $output =~ ^[0-9]+$ ]]
 }
-
-#@test 'User ID is a number'
-
-@test 'Returns only JSON' {
-    run get_user_info
-    [ "$status" -eq 0 ]
-    [[ "$output" == "{"*"}" ]]
-}
-#TODO: combine in the refactor
 
 @test 'Get Users Event List' {
     run get_users_event_list
+    # Good exit status
     [ "$status" -eq 0 ]
+    # Contains events
     [[ "$output" == *'"events":'* ]]
+    # Is only JSON
+    [[ "$output" == "{"*"}" ]]
 }
+
+@test 'Clear output file' {
+    rm -f ./test/test_eventbrite.json
+}
+
+@test 'Save JSON output' {
+    run save_events_to_json $EVENTBRITE_TEST_OUTPUT
+    # Exits with good status
+    [ "$status" -eq 0 ]
+    # Is only JSON
+    [[ "$(cat $EVENTBRITE_TEST_OUTPUT)" == "{"*"}" ]]
+}
+
+
+
 
 
 

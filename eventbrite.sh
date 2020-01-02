@@ -19,11 +19,14 @@ get_user_info() {
 }
 
 get_user_id() {
-    echo $(get_user_info) | \
-    sed 's/, "/,\n"/g' | \
-    grep \"id\":
- #   sed 's/id: \"//g' | \
- #   sed 's/\".//g'
+    id_line=$( \
+        get_user_info | \
+        sed 's/, "/,\n"/g' | \
+        grep \"id\": \
+    )
+
+    id_line=${id_line##* \"}
+    echo ${id_line%\"*}
 }
 
 get_users_event_list() {
@@ -32,5 +35,12 @@ get_users_event_list() {
     'https://www.eventbriteapi.com/v3/organizations/150420679378/events/'
 }
 
+save_events_to_json() {
+    get_users_event_list > "$@"
+}
+
 
 check_oauth_token
+if [ -n "$1" ]; then
+    save_events_to_json "$@"
+fi
