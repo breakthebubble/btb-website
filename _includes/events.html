@@ -7,11 +7,11 @@
                 <section class="event">
                     {% assign logo_is_not_empty = event.logo | is_not_empty %}
                     {% if logo_is_not_empty %}
-                        <div class="image"><img src="{{ event.logo.url  }}" alt="" /></div>  <!--TODO: there was a relative path filter here.  What should that be?-->
+                        <div class="image"><a href={{ event.url }}><img src="{{ event.logo.url  }}" alt="" /></a></div>  <!--TODO: there was a relative path filter here.  What should that be?-->
                     {% endif %}
                     <div class="content">
                         <h3>{{ event.name.text }}</h3>
-                        {{ event.description.text | markdownify }}
+                        {{ event.summary | markdownify }}
                     </div>
                 </section>
             {% endfor %}
