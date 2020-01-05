@@ -11,8 +11,3 @@ group :jekyll_plugins do
     gem "jekyll-paginate", "~> 1.1"
 end
 
-group :debug do
-    gem "ruby-debug-ide"
-    gem "debase"
-    gem "solargraph"
-end
