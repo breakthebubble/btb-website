@@ -33,3 +33,7 @@ Fractal original README is located [here](./README.theme.md).
         bundle exec jekyll serve
 
 1. Browse to [http://localhost:4000](http://localhost:4000)
+
+
+## Ruby debugging
+* [Ruby Debugger Using Visual Studio Code](https://stackify.com/ruby-debugger-using-visual-studio-code/)
