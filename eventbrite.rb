@@ -7,21 +7,24 @@ if ARGV.length != 1
     exit
 end
 
-options = { query: { token: ENV["EVENTBRITE_PRIVATE_TOKEN"] } }
+#options = { query: { token: ENV["EVENTBRITE_PRIVATE_TOKEN"] } }
+headers = { 'Authorization'=> "Bearer #{ENV["EVENTBRITE_PRIVATE_TOKEN"]}" }
+p headers
 
-h_user = HTTParty.get("https://www.eventbriteapi.com/v3/users/me/", options).parsed_response
+h_user = HTTParty.get("https://www.eventbriteapi.com/v3/users/me/", :headers => headers ).parsed_response
+p h_user
 puts "User ID: " + h_user_id = h_user['id']
 
-h_orgs = HTTParty.get("https://www.eventbriteapi.com/v3/users/me/organizations/", options).parsed_response
+h_orgs = HTTParty.get("https://www.eventbriteapi.com/v3/users/me/organizations/", :headers => headers ).parsed_response
 puts "Organization ID: " + h_org_id = h_orgs['organizations'][0]['id']
 
-events_options = options
-#events_options = { query: { token: ENV["EVENTBRITE_PRIVATE_TOKEN"], status: 'live' } }
-h_event_resp = HTTParty.get("https://www.eventbriteapi.com/v3/organizations/"+h_org_id+"/events/", events_options).parsed_response
+
+query = { status: 'live' }
+h_event_resp = HTTParty.get("https://www.eventbriteapi.com/v3/organizations/"+h_org_id+"/events/", :query => query, :headers => headers ).parsed_response
 h_events = h_event_resp['events']
 while h_event_resp['pagination']['has_more_items']
     events_options = { query: { token: ENV["EVENTBRITE_PRIVATE_TOKEN"], continuation: h_event_resp['pagination']['continuation'] } }
-    h_event_resp = HTTParty.get("https://www.eventbriteapi.com/v3/organizations/"+h_org_id+"/events/", events_options).parsed_response
+    h_event_resp = HTTParty.get("https://www.eventbriteapi.com/v3/organizations/"+h_org_id+"/events/", :query => query, :headers => headers ).parsed_response
     h_events = h_events + h_event_resp['events']
 end
 
