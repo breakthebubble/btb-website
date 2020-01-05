@@ -12,8 +12,8 @@
                     {% endif %}
                     <div class="content">
                         <h2>{{ event.name.text | strip_html | escape }}</h2>
-                        <h3>{{ event.start.local | strip_html | escape }}</h3>
-                        {{ event.summary | strip_html | escape }}
+                        <h3>{{ event.start.local | date: '%a %l:%M%P, %b %e' }}</h3>
+                        {{ event.summary | strip_html | escape }}...
                         <a href={{ event.url | escape }}>Click Here for More</a>
                     </div>
                 </section>
