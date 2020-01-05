@@ -19,11 +19,10 @@ h_orgs = HTTParty.get("https://www.eventbriteapi.com/v3/users/me/organizations/"
 puts "Organization ID: " + h_org_id = h_orgs['organizations'][0]['id']
 
 
-query = { status: 'live' }
-h_event_resp = HTTParty.get("https://www.eventbriteapi.com/v3/organizations/"+h_org_id+"/events/", :query => query, :headers => headers ).parsed_response
+h_event_resp = HTTParty.get("https://www.eventbriteapi.com/v3/organizations/"+h_org_id+"/events/", :headers => headers ).parsed_response
 h_events = h_event_resp['events']
 while h_event_resp['pagination']['has_more_items']
-    events_options = { query: { token: ENV["EVENTBRITE_PRIVATE_TOKEN"], continuation: h_event_resp['pagination']['continuation'] } }
+    query = { continuation: h_event_resp['pagination']['continuation'] }
     h_event_resp = HTTParty.get("https://www.eventbriteapi.com/v3/organizations/"+h_org_id+"/events/", :query => query, :headers => headers ).parsed_response
     h_events = h_events + h_event_resp['events']
 end
