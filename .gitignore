@@ -7,5 +7,5 @@ _site/
 ### build script output ###
 _data/eventbrite.json
 
-### Unit test output ###
-test/test_eventlist.json
+### VS Code ###
+.vscode/
