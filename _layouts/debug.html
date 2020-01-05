@@ -1,6 +1,8 @@
 <pre>
 {
-    site: {{ site | jsonify | escape }},
+    eventbrite: {{ site.data.eventbrite | jsonify | escape | replace: ",", ",<br>" | replace: "{","<br>{" }},
+    eventbrite-bash: {{ site.data.eventbrite | jsonify | escape | replace: ",", ",<br>" | replace: "{","<br>{" }},
+    <br><br><br><br><br><br>
     page: {{ page | jsonify | escape }},
     layout: {{ layout | jsonify | escape }},
     content: {{ content | jsonify | escape }},
