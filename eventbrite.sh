@@ -29,10 +29,16 @@ get_user_id() {
     echo ${id_line%\"*}
 }
 
+get_users_organizations() {
+    curl --silent "$@" \
+        --header "Authorization: Bearer $EVENTBRITE_PRIVATE_TOKEN" \
+        'https://www.eventbriteapi.com/v3/users/$(get_user_id)/organizations/'
+}
+
 get_users_event_list() {
     curl --silent "$@" \
-    --header "Authorization: Bearer $EVENTBRITE_PRIVATE_TOKEN" \
-    "https://www.eventbriteapi.com/v3/organizations/$(get_user_id)/events/?page_size=$EVENTBRITE_EVENT_LIST_MAX"
+        --header "Authorization: Bearer $EVENTBRITE_PRIVATE_TOKEN" \
+        "https://www.eventbriteapi.com/v3/organizations/$(get_user_id)/events/?page_size=$EVENTBRITE_EVENT_LIST_MAX"
 }
 
 filter_json_html() {
