@@ -1,4 +1,5 @@
-title: 'Break the Bubble!'
+title: 'Break the Bubble'
+splash_title: 'Break<br> the<br> Bubble'
 baseurl: /
 permalink: '/:title/'
 collections:
