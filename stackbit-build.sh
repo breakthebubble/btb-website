@@ -12,7 +12,7 @@ else
 fi
 curl -s -X POST https://api.stackbit.com/project/5e0aa13cd14934001b371696/webhook/build/ssgbuild > /dev/null
 
-./eventbrite.sh './_data/eventbrite.json'
+bundle exec ruby eventbrite.rb _data/eventbrite.json
 jekyll build
 
 curl -s -X POST https://api.stackbit.com/project/5e0aa13cd14934001b371696/webhook/build/publish > /dev/null
