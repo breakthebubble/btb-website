@@ -40,8 +40,8 @@
 			@include vendor('transition', ('opacity 0.5s ease', 'transform 1s ease'));
 			@include vendor('transform', 'translateX(0)');
 			opacity: 1;
-			text-align: right;
-			margin: (_size(element-margin) * -1.75) (_size(element-margin) * 2) 0 0;
+			text-align: left;
+			margin: (_size(element-margin) * -1.75) 0 0 (_size(element-margin) * 2);
 
 			> :last-child {
 				margin-bottom: 0;
@@ -75,7 +75,7 @@
 				min-height: 0;
 
 				.content {
-					margin: (_size(element-margin) * -1) (_size(element-margin) * 2) 0 0;
+					margin: (_size(element-margin) * -1) 0 0 (_size(element-margin) * 2);
 
 					.actions {
 						@include vendor('justify-content', 'center');
@@ -91,7 +91,7 @@
 							display: block;
 							width: 100%;
 							text-align: center;
-							margin: 0 0 _size(element-margin) 0;
+							margin: _size(element-margin) 0 0 0;
 						}
 
 						.image {

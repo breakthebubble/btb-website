@@ -3,12 +3,12 @@ subtitle:
 actions:
   - label: Sign Up!
     icon: fa-download
-    url: /elements
+    url: '#events'
     is_primary: true
-    is_scrolly: false
+    is_scrolly: true
   - label: Learn More
     icon: fa-chevron-down
-    url: '#one'
+    url: '#spotlights'
     is_primary: false
     is_scrolly: true
 img:

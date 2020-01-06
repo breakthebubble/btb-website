@@ -1,9 +1,14 @@
 ---
 title: 
 sections:
+  - title: Events Section
+    section_id: events
+    type: events
+    component: events.html
+
   - title: |-
-      This is the top text
-    section_id: one
+      Make new friends.
+    section_id: intro
     background_style: style2
     icons:
       - title: Shoot
@@ -14,8 +19,9 @@ sections:
         icon: fa-cloud
     type: icons
     component: icons.html
+
   - title: Spotlights Section
-    section_id: two
+    section_id: spotlights
     spotlights:
       - title: Magna sed ultrices
         text: >-
@@ -49,10 +55,10 @@ sections:
     type: spotlights
     component: spotlights.html
     
-  - title: Events Section
-    section_id: events
+  - title: Event Archive
+    section_id: archive
     type: events
-    component: events.html
+    component: archive.html
 
   - title: Magna leo sapien gravida
     subtitle: |-
