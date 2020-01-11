@@ -1,0 +1,25 @@
+<!-- Events -->
+<section id="{{ include.section.section_id }}" class="wrapper">
+    <div class="inner alt">
+        <ul class="icons labeled">
+            {% assign archive_is_not_empty = site.data.eventbrite | where_exp:'i',"i.status != 'draft'" | where_exp:'i',"i.status != 'canceled'" | is_not_empty %}
+            {% if archive_is_not_empty %}
+                {% assign archive = (site.data.eventbrite | where_exp:'i',"i.status != 'draft'" | where_exp:'i',"i.status != 'canceled'" | sort: "start.local" | reverse) %}
+                {% for event in archive %}
+                    <li><span class="icon fa-camera-retro"><span class="label">{{ event.name.text | strip_html | escape }}</span></span></li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+        {% assign icons_is_not_empty = include.section.icons | is_not_empty %}
+        {% if icons_is_not_empty %}
+            <section class="special">
+                <ul class="icons labeled">
+                    {% for item in include.section.icons %}
+                        <li><span class="icon {{ item.icon }}"><span class="label">{{ item.title | strip_html }}</span></span></li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+    </div>
+</section>

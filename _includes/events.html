@@ -12,22 +12,36 @@
                     {% endif %}
                     <div class="content">
                         <h2>{{ event.name.text | strip_html | escape }}</h2>
-                        <h3>{{ event.start.local | strip_html | escape }}</h3>
-                        {{ event.summary | strip_html | escape }}
+                        <h3>{{ event.start.local | date: '%a %l:%M%P, %b %e' }}</h3>
+                        {{ event.summary | strip_html | escape }}...
                         <a href={{ event.url | escape }}>Click Here for More</a>
+
+                        <br><br>
+                        <!-- Noscript content for added SEO -->
+                        <noscript><a href={{ event.url | escape }} rel="noopener noreferrer" target="_blank"></noscript>
+                        <!-- You can customize this button any way you like -->
+                        <button class='button primary' id="eventbrite-widget-modal-trigger-{{ event.id }}" type="button">Sign Up!</button>
+                        <noscript></a>Buy Tickets on Eventbrite</noscript>
+                            
+                        <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+                            
+                        <script type="text/javascript">
+                            var exampleCallback = function() {
+                                console.log('Order complete!');
+                            };
+                        
+                            window.EBWidgets.createWidget({
+                                widgetType: 'checkout',
+                                eventId: '{{ event.id }}',
+                                modal: true,
+                                modalTriggerElementId: 'eventbrite-widget-modal-trigger-{{ event.id }}',
+                                onOrderComplete: exampleCallback
+                            });
+                        </script>
                     </div>
                 </section>
             {% endfor %}
         {% endif %}
-
-            <section class="special">
-                <ul class="icons labeled">
-                    {% assign events = (site.data.eventbrite | where_exp:'i',"i.status != 'draft'" | where_exp:'i',"i.status != 'canceled'" | sort: "start.local" | reverse) %}
-                    {% for event in events %}
-                        <li><span class="icon fa-camera-retro"><span class="label">{{ event.name.text | strip_html | escape }}</span></span></li>
-                    {% endfor %}
-                </ul>
-            </section>
 
         {% assign icons_is_not_empty = include.section.icons | is_not_empty %}
         {% if icons_is_not_empty %}
