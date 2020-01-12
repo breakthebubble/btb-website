@@ -30,6 +30,7 @@ sass:
 plugins:
   - jekyll-menus
 exclude:
+  - gems/
   - Gemfile
   - Gemfile.lock
   - node_modules
