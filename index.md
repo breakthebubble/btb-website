@@ -23,23 +23,17 @@ sections:
   - title: Spotlights Section
     section_id: spotlights
     spotlights:
-      - title: Magna sed ultrices
+      - title: The right kind of Minnesota Nice.
         text: >-
-          Morbi mattis ornare ornare. Duis quam turpis, gravida at leo elementum
-          elit fusce accumsan dui libero, quis vehicula lectus ultricies eu. In
-          convallis amet leo non sapien iaculis efficitur consequat lorem ipsum.
+          Break the Bubble was created to solve a big problem: How do you make new friends in the Twin Cities? Whether you just moved here or have lived here your whole life, it can be challenging to make friends. Some call it "Minnesota Nice" while others say "Minnesotans will give you directions anywhere, except to their lake cabin." No matter how you say it, making friends here is hard. We're changing that.
         image: images/pic01.jpg
-      - title: Ultrices nullam aliquam
+      - title: Purely social.
         text: >-
-          Morbi mattis ornare ornare. Duis quam turpis, gravida at leo elementum
-          elit fusce accumsan dui libero, quis vehicula lectus ultricies eu. In
-          convallis amet leo non sapien iaculis efficitur consequat lorem ipsum.
+          We exist to help you meet new people and make friends.We're not a professional networking organization and we're not a singles group. (But if people meet at a BtB event and end up dating or finding a job opportunity, all the better.) So it's okay to invite someone you meet at a BtB event to do something - no one's going to think you're asking them out on a date!
         image: images/pic02.jpg
-      - title: Aliquam sed magna
+      - title: So this is a singles event?
         text: >-
-          Morbi mattis ornare ornare. Duis quam turpis, gravida at leo elementum
-          elit fusce accumsan dui libero, quis vehicula lectus ultricies eu. In
-          convallis amet leo non sapien iaculis efficitur consequat lorem ipsum.
+          Nope. It's not for professional networking either. It really is for making friends. You can leave the pick-up lines and elevator speeches at home. Cool, huh?
         image: images/pic03.jpg
     icons:
       - title: Ipsum lorem accumsan
