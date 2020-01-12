@@ -11,27 +11,24 @@
                 {% assign archive = (site.data.eventbrite |
                     where_exp:'i',"i.status != 'draft'" |
                     where_exp:'i',"i.status != 'canceled'" |
-                    sort: "start.local" |
-                    reverse |
-                    group_by_exp: "item", "item.start.local | date: '%Y'" )
+                    sort: "start.local"
+                     )
                 %}
-                {% for year in archive %}
-                <div><ul>
-                    <li><h3>{{ year.name }}</h3></li>
-                    {% for event in year.items %}
-                        <li><a href={{ event.url | escape }}>
-                            {{ event.start.local | date: '%b %e' }}
-                            -
-                            {{ event.name.text |
-                                remove: 'Break The Bubble' |
-                                remove: 'Break the Bubble' |
-                                strip_html |
-                                escape
-                            }}
-                        </a></li>
+                <table>
+                    {% for year in archive | group_by_exp: "item", "item.start.local | date: '%Y'" %}
+                    <th>{{ year.name }}</th>
                     {% endfor %}
-                </ul></div>
-                {% endfor %}
+                    {% for month in archive | group_by_exp: "item", "item.start.local | date: '%M'" %}
+                        <tr>
+                            {% for event in year.items %}
+                                <td><a href={{ event.url | escape }}>
+                                    <span class="icon icon fa-cloud"></span>
+                                    {{ event.start.local | date: '%b %e' }}
+                                </a></td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
             {% endif %}
         </ul>
 
