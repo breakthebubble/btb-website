@@ -12,10 +12,11 @@
                     where_exp:'i',"i.status != 'draft'" |
                     where_exp:'i',"i.status != 'canceled'" |
                     sort: "start.local"
-                     )
+                    )
                 %}
+                {% assign years = archive | group_by_exp: "item", "item.start.local | date: '%Y'" %}
                 <table>
-                    {% for year in archive | group_by_exp: "item", "item.start.local | date: '%Y'" %}
+                    {% for year in years %}
                     <th>{{ year.name }}</th>
                     {% endfor %}
                     {% for month in archive | group_by_exp: "item", "item.start.local | date: '%M'" %}
