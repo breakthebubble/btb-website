@@ -2,11 +2,33 @@
 <section id="{{ include.section.section_id }}" class="wrapper">
     <div class="inner alt">
         <ul class="icons labeled">
-            {% assign archive_is_not_empty = site.data.eventbrite | where_exp:'i',"i.status != 'draft'" | where_exp:'i',"i.status != 'canceled'" | is_not_empty %}
+            {% assign archive_is_not_empty = site.data.eventbrite | 
+                where_exp:'i',"i.status != 'draft'" |
+                where_exp:'i',"i.status != 'canceled'" |
+                is_not_empty
+            %}
             {% if archive_is_not_empty %}
-                {% assign archive = (site.data.eventbrite | where_exp:'i',"i.status != 'draft'" | where_exp:'i',"i.status != 'canceled'" | sort: "start.local" | reverse) %}
-                {% for event in archive %}
-                    <li><span class="icon fa-camera-retro"><span class="label">{{ event.name.text | strip_html | escape }}</span></span></li>
+                {% assign archive = (site.data.eventbrite |
+                    where_exp:'i',"i.status != 'draft'" |
+                    where_exp:'i',"i.status != 'canceled'" |
+                    sort: "start.local" |
+                    group_by_exp: "item", "item.start.local | date: '%Y'" |
+                    reverse
+                    )
+                %}
+                {% for year in archive %}
+                    <div class="archive year">
+                        <h3>{{ year.name }}</h3>
+                        <ul>
+                        {% for event in year.items %}
+                            <li>
+                                <a href={{ event.url | escape }}>
+                                    <span class="icon fa-cloud">{{event.start.local | date: '%b'}}</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
                 {% endfor %}
             {% endif %}
         </ul>

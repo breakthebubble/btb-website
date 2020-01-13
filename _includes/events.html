@@ -1,9 +1,15 @@
 <!-- Events -->
 <section id="{{ include.section.section_id }}" class="wrapper">
     <div class="inner alt">
-        {% assign events_is_not_empty = site.data.eventbrite | where:'status','live' | is_not_empty %}
+        {% assign events_is_not_empty = site.data.eventbrite |
+            where:'status','live' |
+            is_not_empty
+        %}
         {% if events_is_not_empty %}
-            {% assign events = (site.data.eventbrite | where:'status','live' | sort: "start.local") %}
+            {% assign events = (site.data.eventbrite |
+                where:'status','live' |
+                sort: "start.local" )
+            %}
             {% for event in events %}
                 <section class="event">
                     {% assign logo_is_not_empty = event.logo | is_not_empty %}
@@ -11,33 +17,37 @@
                         <div class="image"><a href={{ event.url | escape }}><img src="{{ event.logo.url }}" alt="" /></a></div>
                     {% endif %}
                     <div class="content">
-                        <h2>{{ event.name.text | strip_html | escape }}</h2>
-                        <h3>{{ event.start.local | date: '%a %l:%M%P, %b %e' }}</h3>
-                        {{ event.summary | strip_html | escape }}...
-                        <a href={{ event.url | escape }}>Click Here for More</a>
-
-                        <br><br>
-                        <!-- Noscript content for added SEO -->
-                        <noscript><a href={{ event.url | escape }} rel="noopener noreferrer" target="_blank"></noscript>
-                        <!-- You can customize this button any way you like -->
-                        <button class='button primary' id="eventbrite-widget-modal-trigger-{{ event.id }}" type="button">Sign Up!</button>
-                        <noscript></a>Buy Tickets on Eventbrite</noscript>
-                            
-                        <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
-                            
-                        <script type="text/javascript">
-                            var exampleCallback = function() {
-                                console.log('Order complete!');
-                            };
-                        
-                            window.EBWidgets.createWidget({
-                                widgetType: 'checkout',
-                                eventId: '{{ event.id }}',
-                                modal: true,
-                                modalTriggerElementId: 'eventbrite-widget-modal-trigger-{{ event.id }}',
-                                onOrderComplete: exampleCallback
-                            });
-                        </script>
+                        <header class="major">
+                            <h2>{{ event.name.text | strip_html | escape }}</h2>
+                            <h3>{{ event.start.local | date: '%a %l:%M%P, %b %e' }}</h3>
+                            {{ event.summary | strip_html | escape }}...
+                            <a href={{ event.url | escape }}>Click Here for More</a>
+                        </header>
+                        <ul class="actions special">
+                            <li>
+                                <!-- Noscript content for added SEO -->
+                                <noscript><a href={{ event.url | escape }} rel="noopener noreferrer" target="_blank"></noscript>
+                                <!-- You can customize this button any way you like -->
+                                <button class='button primary' id="eventbrite-widget-modal-trigger-{{ event.id }}" type="button">Sign Up!</button>
+                                <noscript></a>Buy Tickets on Eventbrite</noscript>
+                                    
+                                <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+                                    
+                                <script type="text/javascript">
+                                    var exampleCallback = function() {
+                                        console.log('Order complete!');
+                                    };
+                                
+                                    window.EBWidgets.createWidget({
+                                        widgetType: 'checkout',
+                                        eventId: '{{ event.id }}',
+                                        modal: true,
+                                        modalTriggerElementId: 'eventbrite-widget-modal-trigger-{{ event.id }}',
+                                        onOrderComplete: exampleCallback
+                                    });
+                                </script>
+                            </li>
+                        </ul>
                     </div>
                 </section>
             {% endfor %}

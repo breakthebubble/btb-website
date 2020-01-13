@@ -9,3 +9,5 @@ _data/eventbrite.json
 
 ### VS Code ###
 .vscode/
+
+gems/
