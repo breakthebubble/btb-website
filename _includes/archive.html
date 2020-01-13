@@ -11,25 +11,25 @@
                 {% assign archive = (site.data.eventbrite |
                     where_exp:'i',"i.status != 'draft'" |
                     where_exp:'i',"i.status != 'canceled'" |
-                    sort: "start.local"
+                    sort: "start.local" |
+                    group_by_exp: "item", "item.start.local | date: '%Y'" |
+                    reverse
                     )
                 %}
-                {% assign years = archive | group_by_exp: "item", "item.start.local | date: '%Y'" %}
-                <table>
-                    {% for year in years %}
-                    <th>{{ year.name }}</th>
-                    {% endfor %}
-                    {% for month in archive | group_by_exp: "item", "item.start.local | date: '%M'" %}
-                        <tr>
-                            {% for event in year.items %}
-                                <td><a href={{ event.url | escape }}>
-                                    <span class="icon icon fa-cloud"></span>
-                                    {{ event.start.local | date: '%b %e' }}
-                                </a></td>
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                </table>
+                {% for year in archive %}
+                    <div class="archive year">
+                        <h3>{{ year.name }}</h3>
+                        <ul>
+                        {% for event in year.items %}
+                            <li>
+                                <a href={{ event.url | escape }}>
+                                    <span class="icon fa-cloud">{{event.start.local | date: '%b'}}</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
             {% endif %}
         </ul>
 
