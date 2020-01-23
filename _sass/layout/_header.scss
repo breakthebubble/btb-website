@@ -85,13 +85,13 @@
 				// Portrait.
 					@include orientation(portrait) {
 						@include padding(6em, 3em);
-						@include vendor('flex-direction', 'column-reverse');
+						@include vendor('flex-direction', 'column');
 
 						.content {
 							display: block;
 							width: 100%;
 							text-align: center;
-							margin: _size(element-margin) 0 0 0;
+							margin: 0 0 _size(element-margin) 0;
 						}
 
 						.image {
@@ -119,7 +119,7 @@
 						@include padding(2em, 2em);
 
 						.content {
-							margin: 0 _size(element-margin) _size(element-margin) 0;
+							margin: 0 0 _size(element-margin) _size(element-margin);
 						}
 
 						.image {
